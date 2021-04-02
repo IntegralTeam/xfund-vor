@@ -17,14 +17,6 @@ type Serve struct {
 	Port int32  `json:"port"`
 }
 
-type Database struct {
-	Host     string `json:"host"`
-	Port     int32  `json:"port"`
-	User     string `json:"user"`
-	Password string `json:"password"`
-	Database string `json:"database"`
-}
-
 var Conf = &Config{
 	FirstBlockNumber: 1,
 	LogFile:          "oracle.log",
@@ -37,6 +29,7 @@ var Conf = &Config{
 	Keystorage: &Keystorage{
 		File: "./keystore.json",
 	},
+	Database: "./oracle.db",
 }
 
 type Config struct {
@@ -51,9 +44,9 @@ type Config struct {
 	Serve                         *Serve      `json:"serve"`
 	LogFile                       string      `json:"log_file"`
 	LogLevel                      string      `json:"log_level"`
-	LimitGasPrice                 int64       `json:"gas_limit"`
+	LimitGasPrice                 int64       `json:"gas_price_limit"`
 	Keystorage                    *Keystorage `json:"keystorage"`
-	Database                      *Database   `json:"database"`
+	Database                      string      `json:"database"`
 }
 
 func NewConfig(filePath string) (*Config, error) {
